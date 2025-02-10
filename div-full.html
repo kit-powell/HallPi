@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fullscreen Split Screen</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            height: 100vh;
+            font-family: Tahoma, sans-serif;
+            background-color: rgb(0, 48, 87);
+            color: white; 
+        }
+
+        #left-content {
+            width: 20%; /* Changed to 20% */
+            background-color: transparent;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        #right-content {
+            width: 80%; /* Adjusted to 80% */
+            background-color: transparent;
+            overflow-y: auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #image-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+      .image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            object-fit: cover;
+        }
+
+      .image.active {
+            opacity: 1;
+        }
+
+        h1, p, ul, li {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="left-content">
+        <p style="text-align: center;"><h1>OES Technical Group</h1></p>
+        <p>Welcome to the OES TEST Laboratory
+		<br>
+		<br>
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</p>
+		<br>
+		<br>
+        <ul>
+            <p style="text-align: center;"><li>Dr. Rick Sanchez, Principle Investigator</li></p>
+            <p style="text-align: center;"><li>Mortie Smith, PhD Candidate</li></p>
+            <p style="text-align: center;"><li>Summer Smith, lab assistant</li></p>
+        </ul>
+		
+		<p style="text-align: center;"><img src="qr.jpg" alt="Lab Server" width="100" height="100"></p>
+		<br>
+		<br>
+		<p style="text-align: center;"><img src="odu.png" alt="Lab Server" width="200" height="100"></p>
+    </div>
+
+    <div id="right-content">
+        <div id="image-container">
+            <img src="image1.jpg" alt="Image 1" class="image active">
+            <img src="image2.jpg" alt="Image 2" class="image">
+            <img src="image3.jpg" alt="Image 3" class="image">
+            <img src="image4.jpg" alt="Image 4" class="image">
+            <img src="image5.jpg" alt="Image 5" class="image">
+        </div>
+    </div>
+
+    <script>
+        const images = document.querySelectorAll('.image');
+        let currentImage = 0;
+
+        function rotateImages() {
+            images[currentImage].classList.remove('active');
+            currentImage = (currentImage + 1) % images.length;
+            images[currentImage].classList.add('active');
+        }
+
+        setInterval(rotateImages, 3000);
+    </script>
+
+</body>
+</html>
